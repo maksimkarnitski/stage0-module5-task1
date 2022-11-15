@@ -1,6 +1,6 @@
 package com.epam.mjc.stage0;
 
-import java.util.Arrays;
+//import java.util.Arrays;
 
 /**
  * Here are the tasks for working with the arrays.
@@ -101,14 +101,21 @@ public class ArrayTasks {
      * arr = [1, 2]         -> [1, 2]
      */
     public int[] getOnlyPositiveNumbers(int[] arr) {
-        int[] newArray = {};
-        int i = 0;
+        //evalute size of new array to store postitive values
         int newArraySize = 0;
         for (int a : arr) {
             if (a > 0) {
-                newArray = Arrays.copyOf(newArray, newArray.length + 1);
-                newArray[i] = a;
-                i++;
+                newArraySize++;
+            }
+        }
+
+        //get positive value and write to new array
+        int[] newArray = new int[newArraySize];
+        int j = 0;
+        for (int a : arr) {
+            if (a > 0) {
+                newArray[j] = a;
+                j++;
             }
         }
         return newArray;
@@ -125,10 +132,19 @@ public class ArrayTasks {
      * arr = [[5, 4], [7]]       -> [[7], [4, 5]]
      */
     public int[][] sortRaggedArray(int[][] arr) {
-//        int[][] tempArray = new int[arr.length][];
+        //sort each inner array asc
         for (int i = 0; i < arr.length; i++) {
-            Arrays.sort(arr[i]);
+            for (int l = 0; l < arr[i].length - 1; l++) {
+                for (int j = 0; j < arr[i].length - 1; j++) {
+                    if (arr[i][j] > arr[i][j + 1]) {
+                        int tempInt = arr[i][j];
+                        arr[i][j] = arr[i][j + 1];
+                        arr[i][j + 1] = tempInt;
+                    }
+                }
+            }
         }
+
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = 0; j < arr.length - 1; j++) {
                 int[] tempArray1;
